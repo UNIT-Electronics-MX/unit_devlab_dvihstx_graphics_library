@@ -14,7 +14,7 @@
 // 4 = {18, {16, 12, 14}} - R=16, G=12, B=14
 // 5 = {18, {16, 14, 12}} - R=16, G=14, B=12
 
-int pinConfigIndex = 0;  // CAMBIA ESTE NÚMERO DE 0 A 5 HASTA QUE LOS COLORES SEAN CORRECTOS
+int pinConfigIndex = 6;  // CAMBIA ESTE NÚMERO DE 0 A 5 HASTA QUE LOS COLORES SEAN CORRECTOS
 
 DVHSTXPinout pinConfigs[] = {
   {18, {12, 14, 16}},  // 0: RGB = 12,14,16
@@ -22,7 +22,8 @@ DVHSTXPinout pinConfigs[] = {
   {18, {14, 12, 16}},  // 2: RGB = 14,12,16
   {18, {14, 16, 12}},  // 3: RGB = 14,16,12
   {18, {16, 12, 14}},  // 4: RGB = 16,12,14
-  {18, {16, 14, 12}}   // 5: RGB = 16,14,12
+  {18, {16, 14, 12}},   // 5: RGB = 16,14,12
+  {14,  18, 16, 12}
 };
 
 DVHSTX16 display(pinConfigs[pinConfigIndex], DVHSTX_RESOLUTION_320x240);
@@ -86,30 +87,30 @@ void testPatterns() {
   delay(4000);
   
   Serial.println("Test 3/7: BLANCO MAXIMO");
-  display.fillScreen((uint16_t)~0xFFFF);
-  drawBigText("BLANCO", (uint16_t)~0x0000);
+  display.fillScreen((uint16_t)0xFFFF);
+  drawBigText("BLANCO", (uint16_t)0x0000);
   delay(2000);
   
   Serial.println("Test 4/7: ROJO PURO");
-  display.fillScreen((uint16_t)~0xF800);
-  drawBigText("ROJO", (uint16_t)~0xFFFF);
+  display.fillScreen((uint16_t)0xF800);
+  drawBigText("ROJO", (uint16_t)0xFFFF);
   delay(2000);
   
   Serial.println("Test 5/7: VERDE PURO");
-  display.fillScreen((uint16_t)~0x07E0);
-  drawBigText("VERDE", (uint16_t)~0xFFFF);
+  display.fillScreen((uint16_t)0x07E0);
+  drawBigText("VERDE", (uint16_t)0xFFFF);
   delay(2000);
   
   Serial.println("Test 6/7: AZUL PURO");
-  display.fillScreen((uint16_t)~0x001F);
-  drawBigText("AZUL", (uint16_t)~0xFFFF);
+  display.fillScreen((uint16_t)0x001F);
+  drawBigText("AZUL", (uint16_t)0xFFFF);
   delay(2000);
   
   Serial.println("Test 7/7: TABLERO AJEDREZ");
   int sq = 40;
   for(int y = 0; y < display.height(); y += sq) {
     for(int x = 0; x < display.width(); x += sq) {
-      uint16_t c = ((x/sq + y/sq) % 2) ? (uint16_t)~0xFFFF : (uint16_t)~0x0000;
+      uint16_t c = ((x/sq + y/sq) % 2) ? (uint16_t)0xFFFF : (uint16_t)0x0000;
       display.fillRect(x, y, sq, sq, c);
     }
   }
@@ -119,7 +120,7 @@ void testPatterns() {
 }
 
 void testASCII() {
-  display.fillScreen((uint16_t)~0x0000);  // Fondo negro (invertido a blanco)
+  display.fillScreen((uint16_t)0x0000);  // Fondo negro (invertido a blanco)
   display.setTextSize(1);
   
   int x = 5, y = 5;
@@ -127,19 +128,19 @@ void testASCII() {
   
   // Título
   display.setCursor(x, y);
-  display.setTextColor((uint16_t)~0xFFFF, (uint16_t)~0x0000);
+  display.setTextColor((uint16_t)0xFFFF, (uint16_t)0x0000);
   display.print("TEST ASCII RP2350");
   y += lineHeight * 2;
   
   // Números
   display.setCursor(x, y);
-  display.setTextColor((uint16_t)~0xF81F, (uint16_t)~0x0000); // Magenta invertido
+  display.setTextColor((uint16_t)0xF81F, (uint16_t)0x0000); // Magenta invertido
   display.print("NUM: 0123456789");
   y += lineHeight;
   
   // Letras mayúsculas
   display.setCursor(x, y);
-  display.setTextColor((uint16_t)~0x07FF, (uint16_t)~0x0000); // Cyan invertido
+  display.setTextColor((uint16_t)0x07FF, (uint16_t)0x0000); // Cyan invertido
   display.print("ABC: ABCDEFGHIJKLM");
   y += lineHeight;
   display.setCursor(x, y);
@@ -148,7 +149,7 @@ void testASCII() {
   
   // Letras minúsculas
   display.setCursor(x, y);
-  display.setTextColor((uint16_t)~0xFFE0, (uint16_t)~0x0000); // Amarillo invertido
+  display.setTextColor((uint16_t)0xFFE0, (uint16_t)0x0000); // Amarillo invertido
   display.print("abc: abcdefghijklm");
   y += lineHeight;
   display.setCursor(x, y);
@@ -157,7 +158,7 @@ void testASCII() {
   
   // Símbolos comunes
   display.setCursor(x, y);
-  display.setTextColor((uint16_t)~0xF800, (uint16_t)~0x0000); // Rojo invertido
+  display.setTextColor((uint16_t)0xF800, (uint16_t)0x0000); // Rojo invertido
   display.print("!@#$%^&*()_+-=[]{}");
   y += lineHeight;
   display.setCursor(x, y);
@@ -165,12 +166,12 @@ void testASCII() {
   y += lineHeight * 2;
   
   // Tabla ASCII en columnas
-  display.setTextColor((uint16_t)~0x07E0, (uint16_t)~0x0000); // Verde invertido
+  display.setTextColor((uint16_t)0x07E0, (uint16_t)0x0000); // Verde invertido
   display.setCursor(x, y);
   display.print("Tabla ASCII:");
   y += lineHeight;
   
-  display.setTextColor((uint16_t)~0xFFFF, (uint16_t)~0x0000);
+  display.setTextColor((uint16_t)0xFFFF, (uint16_t)0x0000);
   int col = 0;
   for (int i = 33; i <= 126; i++) {
     int xPos = x + (col * 60);
@@ -192,7 +193,7 @@ void testASCII() {
   // Frases pangrama
   y = display.height() - lineHeight * 2;
   display.setCursor(x, y);
-  display.setTextColor((uint16_t)~0x07FF, (uint16_t)~0x0000);
+  display.setTextColor((uint16_t)0x07FF, (uint16_t)0x0000);
   display.print("Quick Brown Fox!");
   y += lineHeight;
   display.setCursor(x, y);
@@ -201,7 +202,7 @@ void testASCII() {
 
 void drawBigText(String text, uint16_t color) {
   display.setTextSize(3);
-  display.setTextColor(color, (uint16_t)~0x0000);
+  display.setTextColor(color, (uint16_t)0x0000);
   
   // Centrar texto aproximadamente
   int textLen = text.length();
@@ -228,14 +229,14 @@ void testColorBars() {
   };
   
   ColorBar bars[] = {
-    {(uint16_t)~0xFFFF, "BLANCO"},   // Invertido: Negro -> Blanco
-    {(uint16_t)~0xFFE0, "AMARILLO"}, // Invertido
-    {(uint16_t)~0x07FF, "CYAN"},     // Invertido
-    {(uint16_t)~0x07E0, "VERDE"},    // Invertido
-    {(uint16_t)~0xF81F, "MAGENTA"},  // Invertido
-    {(uint16_t)~0xF800, "ROJO"},     // Invertido
-    {(uint16_t)~0x001F, "AZUL"},     // Invertido
-    {(uint16_t)~0x0000, "NEGRO"}     // Invertido: Blanco -> Negro
+    {(uint16_t)0xFFFF, "BLANCO"},   // Invertido: Negro -> Blanco
+    {(uint16_t)0xFFE0, "AMARILLO"}, // Invertido
+    {(uint16_t)0x07FF, "CYAN"},     // Invertido
+    {(uint16_t)0x07E0, "VERDE"},    // Invertido
+    {(uint16_t)0xF81F, "MAGENTA"},  // Invertido
+    {(uint16_t)0xF800, "ROJO"},     // Invertido
+    {(uint16_t)0x001F, "AZUL"},     // Invertido
+    {(uint16_t)0x0000, "NEGRO"}     // Invertido: Blanco -> Negro
   };
   
   int numBars = 8;
@@ -251,7 +252,7 @@ void testColorBars() {
     display.setTextSize(1);
     
     // Color del texto (invertido también)
-    uint16_t textColor = (i == 0 || i == 1 || i == 2 || i == 3) ? (uint16_t)~0x0000 : (uint16_t)~0xFFFF;
+    uint16_t textColor = (i == 0 || i == 1 || i == 2 || i == 3) ? (uint16_t)0x0000 : (uint16_t)0xFFFF;
     display.setTextColor(textColor, bars[i].color);
     
     // Posición del texto (centrado en la barra)
@@ -263,9 +264,9 @@ void testColorBars() {
   }
   
   // Título en la parte superior
-  display.fillRect(0, 0, display.width(), 12, (uint16_t)~0x0000);
+  display.fillRect(0, 0, display.width(), 12, (uint16_t)0x0000);
   display.setTextSize(1);
-  display.setTextColor((uint16_t)~0xFFFF, (uint16_t)~0x0000);
+  display.setTextColor((uint16_t)0xFFFF, (uint16_t)0x0000);
   display.setCursor(5, 2);
   display.print("COLORES INVERTIDOS");
 }

@@ -17,7 +17,7 @@ DVHSTXPinout pinConfig = ADAFRUIT_HSTXDVIBELL_CFG;
 // Configuración estándar: {Clock+, Data0+(Blue), Data1+(Green), Data2+(Red)}
 // 14 | 18 | 16 | 12
 // DVHSTXPinout pinConfig = {14, 18, 16, 12};
-DVHSTXPinout pinConfig = {16, 12, 14, 18};
+DVHSTXPinout pinConfig = {14, 18, 16, 12};
 #endif
 
 

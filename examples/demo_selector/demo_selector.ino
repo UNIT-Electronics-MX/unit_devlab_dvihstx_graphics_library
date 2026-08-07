@@ -5,7 +5,7 @@
 
 #include <UDVI_HSTX.h>
 
-DVHSTXPinout pinConfig = {18, 12, 14, 16};
+DVHSTXPinout pinConfig = {14, 18, 16, 12};
 DVHSTX16 display(pinConfig, DVHSTX_RESOLUTION_320x240);
 
 int currentDemo = -1; // -1 = menú

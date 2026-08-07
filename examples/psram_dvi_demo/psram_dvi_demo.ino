@@ -4,24 +4,23 @@
 // Hardware:
 // DVI:  D1(GPIO18)=Clock+, D7(GPIO12)=Data0+, D5(GPIO14)=Data1+, D3(GPIO16)=Data2+
 // PSRAM: GPIO0=CS, GPIO47-50=QSPI Data, GPIO52=QSPI CLK
-// NOTE: Hardware inverts colors, so we use ~color
 
 #include <UDVI_HSTX.h>
 #include "hardware/gpio.h"
 #include "hardware/spi.h"
 
-DVHSTXPinout pinConfig = {18, {12, 14, 16}};
+DVHSTXPinout pinConfig = {14, 18, 16, 12};
 DVHSTX16 display(pinConfig, DVHSTX_RESOLUTION_320x240);
 
 // Inverted colors for hardware
-#define COLOR_BLACK       (uint16_t)~0x0000
-#define COLOR_MATRIX      (uint16_t)~0x07E0  // Green
-#define COLOR_RED         (uint16_t)~0xF800
-#define COLOR_BLUE        (uint16_t)~0x001F
-#define COLOR_YELLOW      (uint16_t)~0xFFE0
-#define COLOR_CYAN        (uint16_t)~0x07FF
-#define COLOR_MAGENTA     (uint16_t)~0xF81F
-#define COLOR_WHITE       (uint16_t)~0xFFFF
+#define COLOR_BLACK       (uint16_t)0x0000
+#define COLOR_MATRIX      (uint16_t)0x07E0  // Green
+#define COLOR_RED         (uint16_t)0xF800
+#define COLOR_BLUE        (uint16_t)0x001F
+#define COLOR_YELLOW      (uint16_t)0xFFE0
+#define COLOR_CYAN        (uint16_t)0x07FF
+#define COLOR_MAGENTA     (uint16_t)0xF81F
+#define COLOR_WHITE       (uint16_t)0xFFFF
 
 // PSRAM Configuration
 #define PSRAM_CS_PIN    0
@@ -197,7 +196,7 @@ void createTestPattern() {
       uint8_t r = (x * 8) & 0x1F;
       uint8_t g = (y * 4) & 0x3F;
       uint8_t b = ((x + y) * 4) & 0x1F;
-      uint16_t color = (uint16_t)~((r << 11) | (g << 5) | b);
+      uint16_t color = (uint16_t)((r << 11) | (g << 5) | b);
       
       psram.write16(spriteAddr + ((y * 32 + x) * 2), color);
     }

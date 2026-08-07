@@ -1,21 +1,20 @@
 // TRON Digital World Demo
 // Arduino RP2350 + DVI/HDMI
 // Pines: D1(GPIO18)=Clock+, D7(GPIO12)=Data0+, D5(GPIO14)=Data1+, D3(GPIO16)=Data2+
-// NOTE: Hardware inverts colors, so we use ~color
 
 #include <UDVI_HSTX.h>
 
-DVHSTXPinout pinConfig = {18, {12, 14, 16}};
+DVHSTXPinout pinConfig = {14, 18, 16, 12};
 DVHSTX16 display(pinConfig, DVHSTX_RESOLUTION_320x240);
 
 // Inverted Tron colors
-#define COLOR_BLACK       (uint16_t)~0x0000
-#define COLOR_TRON_BLUE   (uint16_t)~0x051F  // Deep blue
-#define COLOR_TRON_CYAN   (uint16_t)~0x07FF  // Bright cyan
-#define COLOR_TRON_ORANGE (uint16_t)~0xFD20  // Orange
-#define COLOR_TRON_WHITE  (uint16_t)~0xFFFF  // White
-#define COLOR_TRON_GRID   (uint16_t)~0x0410  // Dark cyan grid
-#define COLOR_HORIZON     (uint16_t)~0x0208  // Very dark blue
+#define COLOR_BLACK       (uint16_t)0x0000
+#define COLOR_TRON_BLUE   (uint16_t)0x051F  // Deep blue
+#define COLOR_TRON_CYAN   (uint16_t)0x07FF  // Bright cyan
+#define COLOR_TRON_ORANGE (uint16_t)0xFD20  // Orange
+#define COLOR_TRON_WHITE  (uint16_t)0xFFFF  // White
+#define COLOR_TRON_GRID   (uint16_t)0x0410  // Dark cyan grid
+#define COLOR_HORIZON     (uint16_t)0x0208  // Very dark blue
 
 // World parameters
 #define HORIZON_Y       80
@@ -89,7 +88,7 @@ void initWorld() {
 void drawSky() {
   for (int y = 0; y < HORIZON_Y; y++) {
     uint8_t blue = map(y, 0, HORIZON_Y, 0, 31);
-    uint16_t color = (uint16_t)~((blue));
+    uint16_t color = (uint16_t)((blue));
     display.drawFastHLine(0, y, 320, color);
   }
 }
@@ -121,7 +120,7 @@ void drawGrid() {
       if (y1 >= HORIZON_Y && y1 < 240) {
         // Fade with distance
         uint8_t brightness = map(depth, 0, 200, 31, 4);
-        uint16_t gridColor = (uint16_t)~(brightness);
+        uint16_t gridColor = (uint16_t)(brightness);
         display.drawPixel(x1, y1, gridColor);
       }
     }
@@ -140,7 +139,7 @@ void drawGrid() {
         int screenX = centerX + (int)(x * scale);
         if (screenX >= 0 && screenX < 320) {
           uint8_t brightness = map(depth, 0, 200, 31, 4);
-          uint16_t gridColor = (uint16_t)~(brightness);
+          uint16_t gridColor = (uint16_t)(brightness);
           display.drawPixel(screenX, y, gridColor);
         }
       }
@@ -210,7 +209,7 @@ void drawLightCycle(LightCycle* cycle) {
         
         // Fading trail
         uint8_t alpha = map(i, 0, cycle->trailLength, 2, 15);
-        uint16_t trailColor = (uint16_t)~(alpha | (alpha << 5) | (alpha << 11));
+        uint16_t trailColor = (uint16_t)(alpha | (alpha << 5) | (alpha << 11));
         
         display.drawLine(x1, y1, x2, y2, trailColor);
       }

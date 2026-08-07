@@ -7,7 +7,7 @@
 #include "SparkFun_BMI270_Arduino_Library.h"
 
 // Configuración HDMI
-DVHSTXPinout pinConfig = {15, 19, 17, 13};
+DVHSTXPinout pinConfig = {14, 18, 16, 12};
 DVHSTX16 display(pinConfig, DVHSTX_RESOLUTION_640x480);
 
 // Sensor BMI270

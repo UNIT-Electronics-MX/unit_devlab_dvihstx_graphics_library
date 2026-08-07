@@ -1,7 +1,6 @@
 // GUI Interface - Interactive Menu System
 // Arduino RP2350 + DVI/HDMI
 // Pines: D1(GPIO18)=Clock+, D7(GPIO12)=Data0+, D5(GPIO14)=Data1+, D3(GPIO16)=Data2+
-// NOTE: Hardware inverts colors, so we use ~color
 // Controls: w/s = up/down, Enter = select, Esc = back
 
 #include <UDVI_HSTX.h>
@@ -10,17 +9,17 @@ DVHSTXPinout pinConfig = {14, 18, 16, 12};
 DVHSTX16 display(pinConfig, DVHSTX_RESOLUTION_320x240);
 
 // Inverted colors for hardware
-#define COLOR_BLACK       (uint16_t)~0x0000
-#define COLOR_WHITE       (uint16_t)~0xFFFF
-#define COLOR_GRAY        (uint16_t)~0x7BEF
-#define COLOR_DARKGRAY    (uint16_t)~0x39E7
-#define COLOR_RED         (uint16_t)~0xF800
-#define COLOR_GREEN       (uint16_t)~0x07E0
-#define COLOR_BLUE        (uint16_t)~0x001F
-#define COLOR_YELLOW      (uint16_t)~0xFFE0
-#define COLOR_CYAN        (uint16_t)~0x07FF
-#define COLOR_MAGENTA     (uint16_t)~0xF81F
-#define COLOR_ORANGE      (uint16_t)~0xFD20
+#define COLOR_BLACK       (uint16_t)0x0000
+#define COLOR_WHITE       (uint16_t)0xFFFF
+#define COLOR_GRAY        (uint16_t)0x7BEF
+#define COLOR_DARKGRAY    (uint16_t)0x39E7
+#define COLOR_RED         (uint16_t)0xF800
+#define COLOR_GREEN       (uint16_t)0x07E0
+#define COLOR_BLUE        (uint16_t)0x001F
+#define COLOR_YELLOW      (uint16_t)0xFFE0
+#define COLOR_CYAN        (uint16_t)0x07FF
+#define COLOR_MAGENTA     (uint16_t)0xF81F
+#define COLOR_ORANGE      (uint16_t)0xFD20
 
 // Menu states
 enum MenuState {

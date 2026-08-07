@@ -1,22 +1,21 @@
 // Retro Space Ships - Vector Graphics Demo
 // Arduino RP2350 + DVI/HDMI
 // Pines: D1(GPIO18)=Clock+, D7(GPIO12)=Data0+, D5(GPIO14)=Data1+, D3(GPIO16)=Data2+
-// NOTE: Hardware inverts colors, so we use ~color
 // Style: Wireframe vector graphics like Asteroids/Battlezone era
 
 #include <UDVI_HSTX.h>
 
-DVHSTXPinout pinConfig = {18, {12, 14, 16}};
+DVHSTXPinout pinConfig = {14, 18, 16, 12};
 DVHSTX16 display(pinConfig, DVHSTX_RESOLUTION_320x240);
 
 // Inverted retro colors
-#define COLOR_BLACK       (uint16_t)~0x0000
-#define COLOR_WHITE       (uint16_t)~0xFFFF
-#define COLOR_GREEN       (uint16_t)~0x07E0  // Classic vector green
-#define COLOR_CYAN        (uint16_t)~0x07FF
-#define COLOR_RED         (uint16_t)~0xF800
-#define COLOR_YELLOW      (uint16_t)~0xFFE0
-#define COLOR_MAGENTA     (uint16_t)~0xF81F
+#define COLOR_BLACK       (uint16_t)0x0000
+#define COLOR_WHITE       (uint16_t)0xFFFF
+#define COLOR_GREEN       (uint16_t)0x07E0  // Classic vector green
+#define COLOR_CYAN        (uint16_t)0x07FF
+#define COLOR_RED         (uint16_t)0xF800
+#define COLOR_YELLOW      (uint16_t)0xFFE0
+#define COLOR_MAGENTA     (uint16_t)0xF81F
 
 #define MAX_STARS       80
 #define MAX_SHIPS       8

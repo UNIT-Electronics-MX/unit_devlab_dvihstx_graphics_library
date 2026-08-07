@@ -1,7 +1,6 @@
 // Matrix Terminal - Interactive Shell with Matrix Style
 // Arduino RP2350 + DVI/HDMI
 // Pines: D1(GPIO18)=Clock+, D7(GPIO12)=Data0+, D5(GPIO14)=Data1+, D3(GPIO16)=Data2+
-// NOTE: Hardware inverts colors, so we use ~color
 
 #include <UDVI_HSTX.h>
 
@@ -9,13 +8,13 @@ DVHSTXPinout pinConfig = {15, 19, 17, 13};
 DVHSTX16 display(pinConfig, DVHSTX_RESOLUTION_320x240);
 
 // Inverted colors for hardware
-#define COLOR_BLACK       (uint16_t)~0x0000
-#define COLOR_MATRIX      (uint16_t)~0x07E0  // Green
-#define COLOR_MATRIX_DIM  (uint16_t)~0x0400  // Dark green
-#define COLOR_WHITE       (uint16_t)~0xFFFF
-#define COLOR_RED         (uint16_t)~0xF800
-#define COLOR_YELLOW      (uint16_t)~0xFFE0
-#define COLOR_CYAN        (uint16_t)~0x07FF
+#define COLOR_BLACK       (uint16_t)0x0000
+#define COLOR_MATRIX      (uint16_t)0x07E0  // Green
+#define COLOR_MATRIX_DIM  (uint16_t)0x0400  // Dark green
+#define COLOR_WHITE       (uint16_t)0xFFFF
+#define COLOR_RED         (uint16_t)0xF800
+#define COLOR_YELLOW      (uint16_t)0xFFE0
+#define COLOR_CYAN        (uint16_t)0x07FF
 
 // Terminal configuration
 #define CHAR_WIDTH   6
@@ -494,14 +493,14 @@ void cmdColourBar() {
   };
   
   ColorBar bars[] = {
-    {(uint16_t)~0xF800, "Red"},
-    {(uint16_t)~0x07E0, "Green"},
-    {(uint16_t)~0x001F, "Blue"},
-    {(uint16_t)~0xFFE0, "Yellow"},
-    {(uint16_t)~0xF81F, "Magenta"},
-    {(uint16_t)~0x07FF, "Cyan"},
-    {(uint16_t)~0xFFFF, "White"},
-    {(uint16_t)~0x0000, "Black"}
+    {(uint16_t)0xF800, "Red"},
+    {(uint16_t)0x07E0, "Green"},
+    {(uint16_t)0x001F, "Blue"},
+    {(uint16_t)0xFFE0, "Yellow"},
+    {(uint16_t)0xF81F, "Magenta"},
+    {(uint16_t)0x07FF, "Cyan"},
+    {(uint16_t)0xFFFF, "White"},
+    {(uint16_t)0x0000, "Black"}
   };
   
   int barWidth = display.width() / 8;
@@ -629,9 +628,9 @@ void cmdMatrixRain() {
   
   // Color cycle for RGB background effect
   uint16_t bgColors[3] = {
-    (uint16_t)~0xF800,  // Red
-    (uint16_t)~0x07E0,  // Green
-    (uint16_t)~0x001F   // Blue
+    (uint16_t)0xF800,  // Red
+    (uint16_t)0x07E0,  // Green
+    (uint16_t)0x001F   // Blue
   };
   
   unsigned long lastUpdate = 0;

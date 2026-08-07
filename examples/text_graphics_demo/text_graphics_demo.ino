@@ -4,7 +4,7 @@
 
 #include <UDVI_HSTX.h>
 
-DVHSTXPinout pinConfig = {18, 12, 14, 16};
+DVHSTXPinout pinConfig = {14, 18, 16, 12};
 DVHSTX16 display(pinConfig, DVHSTX_RESOLUTION_320x240);
 
 struct SystemInfo {
@@ -135,7 +135,7 @@ void updateDisplay() {
   display.setCursor(5, 220);
   display.setTextColor(0xFFFF);
   display.setTextSize(1);
-  display.print("GPIO: 18,12,14,16 | FPS:");
+  display.print("GPIO: 14,18,16,12 | FPS:");
   display.print(sysInfo.fps);
   display.print(" | CPU:264MHz");
 }

@@ -16,7 +16,7 @@ DVHSTXPinout pinConfig = ARDUINO_NANO_RP2350_DVI_CFG;
 DVHSTXPinout pinConfig = ADAFRUIT_HSTXDVIBELL_CFG;
 #else
 // Configuración estándar: {Clock+, Data0+(Blue), Data1+(Green), Data2+(Red)}
-DVHSTXPinout pinConfig = {18, 12, 14, 16};
+DVHSTXPinout pinConfig = {14, 18, 16, 12};
 #endif
 
 
