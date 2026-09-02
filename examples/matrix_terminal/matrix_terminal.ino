@@ -2,7 +2,7 @@
 // Arduino RP2350 + DVI/HDMI
 // Pines: D1(GPIO18)=Clock+, D7(GPIO12)=Data0+, D5(GPIO14)=Data1+, D3(GPIO16)=Data2+
 
-#include <UDVI_HSTX.h>
+#include <DevLab_DVIHSTX_Graphics.h>
 
 DVHSTXPinout pinConfig = {15, 19, 17, 13};
 DVHSTX16 display(pinConfig, DVHSTX_RESOLUTION_320x240);

@@ -2,7 +2,7 @@
 // Arduino Nano RP2350 + DVI
 // Pines: D1(GPIO18)=Clock+, D7(GPIO12)=Data0+(Blue), D5(GPIO14)=Data1+(Green), D3(GPIO16)=Data2+(Red)
 
-#include <UDVI_HSTX.h>
+#include <DevLab_DVIHSTX_Graphics.h>
 
 DVHSTXPinout pinConfig = {14, 18, 16, 12};
 DVHSTX16 display(pinConfig, DVHSTX_RESOLUTION_320x240);

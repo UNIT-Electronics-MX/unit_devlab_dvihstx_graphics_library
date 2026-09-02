@@ -3,7 +3,7 @@
 // Mueve la placa para controlar la paleta
 
 #include <Wire.h>
-#include <UDVI_HSTX.h>
+#include <DevLab_DVIHSTX_Graphics.h>
 #include "SparkFun_BMI270_Arduino_Library.h"
 
 // Configuración HDMI

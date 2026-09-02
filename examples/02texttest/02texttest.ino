@@ -3,7 +3,7 @@
 // Configuración: D1(GPIO18)=Clock+, D7(GPIO12)=Data0+(Blue), D5(GPIO14)=Data1+(Green), D3(GPIO16)=Data2+(Red)
 // NOTA: Usa DVHSTX16 con Adafruit_GFX en lugar de DVHSTXText (que no funciona)
 
-#include <UDVI_HSTX.h>
+#include <DevLab_DVIHSTX_Graphics.h>
 
 #if defined(ADAFRUIT_FEATHER_RP2350_HSTX)
 DVHSTXPinout pinConfig = ADAFRUIT_FEATHER_RP2350_CFG;

@@ -1,4 +1,4 @@
-#include "UDVI_HSTX.h"
+#include "DevLab_DVIHSTX_Graphics.h"
 
 int16_t dvhstx_width(DVHSTXResolution r) {
   switch (r) {

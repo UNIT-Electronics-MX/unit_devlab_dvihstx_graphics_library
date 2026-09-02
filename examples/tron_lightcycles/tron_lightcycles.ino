@@ -7,7 +7,7 @@
 // un muro o una estela (propia o ajena) explotan y comienza una ronda
 // nueva. El marcador se conserva entre rondas.
 
-#include <UDVI_HSTX.h>
+#include <DevLab_DVIHSTX_Graphics.h>
 
 DVHSTXPinout pinConfig = {14, 18, 16, 12};
 DVHSTX16 display(pinConfig, DVHSTX_RESOLUTION_320x240);

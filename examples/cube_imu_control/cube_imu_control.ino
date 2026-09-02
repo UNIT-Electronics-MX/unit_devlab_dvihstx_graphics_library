@@ -3,7 +3,7 @@
 // Control del cubo con acelerómetro/giroscopio
 
 #include <Wire.h>
-#include <UDVI_HSTX.h>
+#include <DevLab_DVIHSTX_Graphics.h>
 #include "SparkFun_BMI270_Arduino_Library.h"
 
 // Configuración HDMI

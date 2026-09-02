@@ -3,7 +3,7 @@
 // Pines: D1(GPIO18)=Clock+, D7(GPIO12)=Data0+, D5(GPIO14)=Data1+, D3(GPIO16)=Data2+
 // Style: Retro space simulator with planets, moons, and stars
 
-#include <UDVI_HSTX.h>
+#include <DevLab_DVIHSTX_Graphics.h>
 
 DVHSTXPinout pinConfig = {14, 18, 16, 12};
 DVHSTX16 display(pinConfig, DVHSTX_RESOLUTION_320x240);
